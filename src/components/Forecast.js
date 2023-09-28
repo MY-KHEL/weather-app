@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { FORECAST_API } from "./forecastApi"
+const API_KEY =process.env.REACT_APP_API_KEY
 
 const WEEKLY_DAYS = ['Mon','Tue','Wed','Thur','Fri','Sat','Sun']
 
@@ -14,7 +15,7 @@ const [error,setError] = useState(null)
 const [isLoading,setIsLoading] = useState(false)
 useEffect(()=>{
   setIsLoading(true)
-  fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${search}&appid=075025eeb9112469175b32b91150a24b&units=Metric`).then(res => {
+  fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${search}&appid=${API_KEY}&units=Metric`).then(res => {
     if (!res.ok) {
         throw Error('Could not find weather condition for that  city')
     }

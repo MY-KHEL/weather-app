@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import './Weather.css'
-import { WEATHER_API_KEY } from './api';
+
 import Content from './Content';
 import Forecast from './Forecast'
 import { DEFAULT_DATA } from './default';
+
+const API_KEY = process.env.REACT_APP_API_KEY;
+
 const Weather = () => {
     const [search , setSearch] = useState('Nigeria')
     const [data , setData] = useState(DEFAULT_DATA)
@@ -15,7 +18,7 @@ const Weather = () => {
         setIsLoading(true)
         setError(null)
         setData('')
-        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=${WEATHER_API_KEY}&units=Metric`)
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=${API_KEY}&units=Metric`)
         .then(res => {
             if (!res.ok) {
                 throw Error('Could not find weather condition for that  city')
@@ -42,7 +45,7 @@ const Weather = () => {
     return ( 
         <>
         <div className='div--container container mt-md-3 p-3 px-4 p-md-0 '>
-
+           
        <div className='row'>
         <div className='col-12 col-md-4'>
             
